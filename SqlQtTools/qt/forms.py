@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushBu
 
 from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
-from qt import DataSourceType
+from SqlQtTools.qt import DataSourceType
 
 
 class SysBaseMainWindow(QMainWindow):

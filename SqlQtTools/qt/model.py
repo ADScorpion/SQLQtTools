@@ -4,7 +4,7 @@ from typing import Generic
 from PyQt6.QtCore import QAbstractTableModel, QModelIndex, Qt
 from sqlalchemy import Enum, DateTime
 
-from sql import SQLDAOType
+from SqlQtTools.sql import SQLDAOType
 from SqlQtTools.general import tz_moscow
 
 

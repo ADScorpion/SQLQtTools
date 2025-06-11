@@ -4,7 +4,7 @@ from typing import Generic
 from sqlalchemy import text, select
 
 from SqlQtTools.sql.model import async_session_maker
-from sql import SQLTableType
+from SqlQtTools.sql import SQLTableType
 
 
 class SysBaseDAO(Generic[SQLTableType]):
