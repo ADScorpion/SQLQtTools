@@ -1,8 +1,9 @@
 from datetime import timezone, timedelta
 from typing import TypeVar
 
-from SqlQtTools.sql import SysBaseTable, SysBaseDAO
-from SqlQtTools.qt import SysBaseDS
+from SqlQtTools.sql.model import SysBaseTable
+from SqlQtTools.sql.dao import SysBaseDAO
+from SqlQtTools.qt.model import SysBaseDS
 
 tz_moscow = timezone(offset=timedelta(hours=3), name='Europe/Moscow')
 
