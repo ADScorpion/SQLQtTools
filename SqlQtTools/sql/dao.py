@@ -119,3 +119,8 @@ class SysBaseDAO(Generic[SQLTableType]):
                 return result.scalar_one_or_none()
             else:
                 return result.scalars().all()
+
+    # Methods for PyQt
+    @classmethod
+    def header_by_fields(cls, fields):
+        return [field.doc for field in fields]
