@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 NAME = "SqlQtTools"
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 REQUIRES = ["PyQt6>=6.9.1", "SQLAlchemy>=2.0.41"]
 
 setup(
     name=NAME,
     version=VERSION,
-    url='https://github.com/ADScorpion/SQLQtTool',
+    url='https://github.com/ADScorpion/SQLQtTools',
     author='Sergey Skalozub',
     description='SQLQtTool README',
     keywords=[],
