@@ -2,9 +2,10 @@ from PyQt6.QtCore import QSortFilterProxyModel, Qt, QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel, QHeaderView, QTableView, QStatusBar, QWidget
 
-from SqlQtTools.general import DataSourceType
+
 from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
+from qt import DataSourceType
 
 
 class SysBaseMainWindow(QMainWindow):

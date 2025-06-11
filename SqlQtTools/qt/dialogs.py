@@ -4,8 +4,9 @@ from typing import Generic
 from PyQt6.QtWidgets import QDialog, QFormLayout, QLineEdit, QComboBox, QDateTimeEdit, QCheckBox, QDialogButtonBox, QTextEdit
 from sqlalchemy import Float, Integer, Enum, DateTime, Boolean, String
 
-from SqlQtTools.general import DataSourceType, tz_moscow
+from SqlQtTools.general import tz_moscow
 from SqlQtTools.sql.dao import SysBaseDAO
+from qt import DataSourceType
 
 
 class SysBaseDialog(QDialog, Generic[DataSourceType]):
