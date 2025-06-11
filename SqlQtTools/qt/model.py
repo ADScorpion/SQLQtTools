@@ -14,8 +14,6 @@ class SysBaseDS(QAbstractTableModel, Generic[SQLDAOType]):
     def __init__(self, query=None, **kwargs):
         super().__init__()
         self._query = query
-        env = kwargs.pop('env', None)
-        self.dao.environment(env)
         self._db = self.dao.select(self._query)
         self._header = self.dao.header_by_fields(self.dao.model.grid_overview())
 
