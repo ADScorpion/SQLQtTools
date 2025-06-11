@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 NAME = "SqlQtTools"
-VERSION = "0.0.1"
-REQUIRES = []
+VERSION = "0.0.2"
+REQUIRES = ["PyQt6>=6.9.1", "SQLAlchemy>=2.0.41"]
 
 setup(
     name=NAME,
