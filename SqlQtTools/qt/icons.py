@@ -1,8 +1,8 @@
 from enum import StrEnum
 
-from PyQt6.QtCore import QObject, QSize, QByteArray, Qt
-from PyQt6.QtGui import QIcon, QPixmap, QPainter
-from PyQt6.QtSvg import QSvgRenderer
+from PySide6.QtCore import QObject, QSize, QByteArray, Qt
+from PySide6.QtGui import QIcon, QPixmap, QPainter
+from PySide6.QtSvg import QSvgRenderer
 
 
 class BootstrapIcons(StrEnum):

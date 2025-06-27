@@ -1,7 +1,7 @@
 from datetime import timezone, datetime
 from typing import Generic
 
-from PyQt6.QtCore import QAbstractTableModel, QModelIndex, Qt
+from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
 from sqlalchemy import Enum, DateTime
 
 from SqlQtTools.sql import SQLDAOType
