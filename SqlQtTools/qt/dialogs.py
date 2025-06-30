@@ -6,10 +6,10 @@ from sqlalchemy import Float, Integer, Enum, DateTime, Boolean, String
 
 from SqlQtTools.general import tz_moscow
 from SqlQtTools.sql.dao import SysBaseDAO
-from SqlQtTools.qt import DataSourceType
+from SqlQtTools.qt import DataSourceMap
 
 
-class SysBaseDialog(QDialog, Generic[DataSourceType]):
+class SysBaseDialog(QDialog, Generic[DataSourceMap]):
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent)
         title = kwargs.pop('title', "Dialog")

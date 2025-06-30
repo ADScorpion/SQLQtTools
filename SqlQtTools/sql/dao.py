@@ -4,12 +4,12 @@ from typing import Generic
 from sqlalchemy import text, select
 
 from SqlQtTools.sql.model import async_session_maker
-from SqlQtTools.sql import SQLTableType
+from SqlQtTools.sql import SQLTableMap
 
 
-class SysBaseDAO(Generic[SQLTableType]):
+class SysBaseDAO(Generic[SQLTableMap]):
     """Базовый класс Data Access Object"""
-    model: type[SQLTableType]
+    model: type[SQLTableMap]
 
     @staticmethod
     def construct(table_name):
@@ -20,7 +20,7 @@ class SysBaseDAO(Generic[SQLTableType]):
 
     # Methods UPDATE
     @classmethod
-    def update(cls, entity) -> SQLTableType:
+    def update(cls, entity) -> SQLTableMap:
         """Метод обновления записи
         :param entity: объект типа SysBaseTable
         """
@@ -45,7 +45,7 @@ class SysBaseDAO(Generic[SQLTableType]):
 
     # Methods INSERT
     @classmethod
-    def insert(cls, entity) -> SQLTableType:
+    def insert(cls, entity) -> SQLTableMap:
         return cls._after_insert(run(cls._insert_async(cls._before_insert(entity))))
 
     @classmethod
@@ -57,7 +57,7 @@ class SysBaseDAO(Generic[SQLTableType]):
         return entity
 
     @classmethod
-    async def _insert_async(cls, entity) -> SQLTableType:
+    async def _insert_async(cls, entity) -> SQLTableMap:
         async with async_session_maker() as session:
             async with session.begin():
                 session.add(entity)

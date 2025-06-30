@@ -4,12 +4,12 @@ from typing import Generic
 from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
 from sqlalchemy import Enum, DateTime
 
-from SqlQtTools.sql import SQLDAOType
+from SqlQtTools.sql import SQLDAOMap
 from SqlQtTools.general import tz_moscow
 
 
-class SysBaseDS(QAbstractTableModel, Generic[SQLDAOType]):
-    dao: type[SQLDAOType]
+class SysBaseDS(QAbstractTableModel, Generic[SQLDAOMap]):
+    dao: type[SQLDAOMap]
 
     def __init__(self, query=None, **kwargs):
         super().__init__()

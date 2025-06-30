@@ -22,7 +22,13 @@ class SysBaseTable(AsyncAttrs, so.DeclarativeBase):
         return []
 
 
-class BaseTable(AbstractConcreteBase, SysBaseTable):
+class SysBaseTableI(AbstractConcreteBase, SysBaseTable):
+    """Базовое описание таблицы с полями Id"""
+
+    Id: so.Mapped[int] = so.mapped_column(primary_key=True, index=True, autoincrement=True, doc="Номер записи", info={'visible': False})
+
+
+class SysBaseTableIC(AbstractConcreteBase, SysBaseTable):
     """Базовое описание таблицы с полями Id, CreatedBy, CreatedAt"""
 
     Id: so.Mapped[int] = so.mapped_column(primary_key=True, index=True, autoincrement=True, doc="Номер записи", info={'visible': False})
@@ -30,7 +36,7 @@ class BaseTable(AbstractConcreteBase, SysBaseTable):
     CreatedAt: so.Mapped[datetime] = so.mapped_column(default=sa.func.now(), doc="Создано", info={'visible': False})
 
 
-class BaseExtTable(AbstractConcreteBase, SysBaseTable):
+class SysBaseTableICM(AbstractConcreteBase, SysBaseTable):
     """Базовое описание таблицы с полями Id, CreatedBy, CreatedAt, ModifiedBy, ModifiedAt"""
 
     Id: so.Mapped[int] = so.mapped_column(primary_key=True, index=True, autoincrement=True, doc="Номер записи", info={'visible': False})

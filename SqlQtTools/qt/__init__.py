@@ -2,7 +2,7 @@ from typing import TypeVar
 
 from SqlQtTools.qt.model import SysBaseDS
 
-DataSourceType = TypeVar("DataSourceType", bound=SysBaseDS)
+DataSourceMap = TypeVar("DataSourceMap", bound=SysBaseDS)
 
 from SqlQtTools.qt.icons import BootstrapIcons, icon_provider
 from SqlQtTools.qt.dialogs import SysBaseDialog

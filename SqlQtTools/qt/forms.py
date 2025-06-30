@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPush
 
 from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
-from SqlQtTools.qt import DataSourceType
+from SqlQtTools.qt import DataSourceMap
 
 
 class SysBaseMainWindow(QMainWindow):
@@ -62,7 +62,7 @@ class SysBaseMainWindow(QMainWindow):
 
 
 class SysBaseWidgetView(QWidget):
-    model: type[DataSourceType]
+    model: type[DataSourceMap]
     dialog = SysBaseDialog
     title = "Форма #"
     win_icon = BootstrapIcons.ROCKET_TAKEOFF
