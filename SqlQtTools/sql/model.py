@@ -19,7 +19,12 @@ class SysBaseTable(so.DeclarativeBase):
 
     @classmethod
     def grid_overview(cls):
-        return []
+        columns = []
+        for column in cls.__table__.columns:
+            if column.info and 'visible' in column.info and column.info['visible'] is False:
+                continue
+            columns.append(column)
+        return columns
 
 
 class SysBaseTableI(SysBaseTable):
