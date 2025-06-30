@@ -62,7 +62,7 @@ class SysBaseMainWindow(QMainWindow):
 
 
 class SysBaseWidgetView(QWidget):
-    model: type[DataSourceMap]
+    ds: type[DataSourceMap]
     dialog = SysBaseDialog
     title = "Форма #"
     win_icon = BootstrapIcons.ROCKET_TAKEOFF
@@ -91,11 +91,11 @@ class SysBaseWidgetView(QWidget):
             self.parent_id = data.Id
 
         if where:
-            self.query = self.model.dao.query(*where)
+            self.query = self.ds.dao.query(*where)
 
     def init_ui(self):
         try:
-            self.datasource = self.model(self.query)
+            self.datasource = self.ds(self.query)
             self.proxy_model.setSourceModel(self.datasource)
             self.proxy_model.setFilterKeyColumn(-1)
 
@@ -173,7 +173,7 @@ class SysBaseWidgetView(QWidget):
     def add(self):
         """Добавление новой записи"""
         try:
-            dialog = self.dialog(parent=self, data=self.datasource.model(), title=f"Добавление", query=self._add_dialog_filter())
+            dialog = self.dialog(parent=self, data=self.datasource.ds(), title=f"Добавление", query=self._add_dialog_filter())
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 data = dialog.get_data(dao=self.datasource.dao)
                 if data:
