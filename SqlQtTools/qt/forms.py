@@ -60,6 +60,9 @@ class SysBaseMainWindow(QMainWindow):
     def menu_add(self, menubar):
         pass
 
+    def update_status_bar(self):
+        pass
+
 
 class SysBaseWidgetView(QWidget):
     ds: type[DataSourceMap]
