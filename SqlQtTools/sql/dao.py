@@ -1,3 +1,4 @@
+import json
 from asyncio import run
 from typing import Generic
 
@@ -124,3 +125,12 @@ class SysBaseDAO(Generic[SQLTableMap]):
     @classmethod
     def header_by_fields(cls, fields):
         return [field.doc for field in fields]
+
+    # Method JSON Serialize
+    @classmethod
+    def dict_to_json(cls, value) -> str:
+        return json.dumps(value)
+
+    @classmethod
+    def json_to_dict(cls, value) -> {}:
+        return json.loads(value) if value else None
