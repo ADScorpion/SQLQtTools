@@ -15,5 +15,6 @@ def pyside6_show(main_window, style="Fusion"):
     finally:
         qtapp = QApplication(sys.argv)
         qtapp.setStyle(QStyleFactory.create(style))
+        main_window()
         main_window.show()
         qtapp.exec()
