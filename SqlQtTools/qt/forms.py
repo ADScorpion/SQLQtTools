@@ -312,6 +312,6 @@ class PySide6App:
         finally:
             qtapp = QApplication(sys.argv)
             qtapp.setStyle(QStyleFactory.create(style))
-            cls.window()
-            cls.window.show()
+            win = cls.window()
+            win.show()
             qtapp.exec()
