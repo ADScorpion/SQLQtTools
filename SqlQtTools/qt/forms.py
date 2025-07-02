@@ -1,6 +1,9 @@
+import sys
+
 from PySide6.QtCore import QSortFilterProxyModel, Qt, QSize
 from PySide6.QtGui import QAction
-from PySide6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel, QHeaderView, QTableView, QStatusBar, QWidget
+from PySide6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel, QHeaderView, QTableView, QStatusBar, QWidget, \
+    QApplication, QStyleFactory
 
 from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
@@ -294,3 +297,21 @@ class SysBaseWidgetView(QWidget):
         subwindow.setWindowIcon(icon_provider.get_icon(_view.win_icon))
         subwindow.show()
         parent.window().update_status_bar()
+
+
+class PySide6App:
+    window: SysBaseMainWindow
+
+    @classmethod
+    def show(cls, style="Fusion"):
+        try:
+            import ctypes
+
+            myappid = 'mycompany.myproduct.subproduct.version'
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        finally:
+            qtapp = QApplication(sys.argv)
+            qtapp.setStyle(QStyleFactory.create(style))
+            cls.window()
+            cls.window.show()
+            qtapp.exec()
