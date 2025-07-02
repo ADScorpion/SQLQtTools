@@ -4,7 +4,7 @@ from typing import Generic
 from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
 from sqlalchemy import Enum, DateTime
 
-from SqlQtTools.sql import SQLDAOMap
+from SqlQtTools.sql import SQLDAOMap, SQLTableMap
 from SqlQtTools.general import tz_moscow
 
 
@@ -97,5 +97,5 @@ class SysBaseDS(QAbstractTableModel, Generic[SQLDAOMap]):
         self.layoutChanged.emit()
 
     @property
-    def model(self):
+    def model(self) -> SQLTableMap:
         return self.dao.model
