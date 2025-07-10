@@ -66,7 +66,8 @@ class SysBaseMainWindow(QMainWindow):
     def update_status_bar(self):
         pass
 
-    def show_message(self, message, timeout=5000):
+    def show_message(self, message, timeout_sec=5):
+        timeout = timeout_sec * 1000
         self.statusBar().showMessage(message, timeout)
 
 
