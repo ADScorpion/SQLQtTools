@@ -3,7 +3,7 @@ import sys
 from PySide6.QtCore import QSortFilterProxyModel, Qt, QSize
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel, QHeaderView, QTableView, QStatusBar, QWidget, \
-    QApplication, QStyleFactory, QProgressBar
+    QApplication, QStyleFactory
 
 from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
@@ -183,7 +183,7 @@ class SysBaseWidgetView(QWidget):
     def add(self):
         """Добавление новой записи"""
         try:
-            dialog = self.dialog(parent=self, data=self.ds(), title=f"Добавление", query=self._add_dialog_filter())
+            dialog = self.dialog(parent=self, data=self.ds().model(), title=f"Добавление", query=self._add_dialog_filter())
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 data = dialog.get_data(dao=self.datasource.dao)
                 if data:
