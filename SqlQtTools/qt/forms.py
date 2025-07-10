@@ -183,7 +183,7 @@ class SysBaseWidgetView(QWidget):
     def add(self):
         """Добавление новой записи"""
         try:
-            dialog = self.dialog(parent=self, data=self.datasource.ds(), title=f"Добавление", query=self._add_dialog_filter())
+            dialog = self.dialog(parent=self, data=self.ds(), title=f"Добавление", query=self._add_dialog_filter())
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 data = dialog.get_data(dao=self.datasource.dao)
                 if data:
