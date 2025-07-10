@@ -3,7 +3,7 @@ import sys
 from PySide6.QtCore import QSortFilterProxyModel, Qt, QSize
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel, QHeaderView, QTableView, QStatusBar, QWidget, \
-    QApplication, QStyleFactory
+    QApplication, QStyleFactory, QProgressBar
 
 from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
@@ -65,6 +65,9 @@ class SysBaseMainWindow(QMainWindow):
 
     def update_status_bar(self):
         pass
+
+    def show_message(self, message, timeout=5000):
+        self.statusBar().showMessage(message, timeout)
 
 
 class SysBaseWidgetView(QWidget):
