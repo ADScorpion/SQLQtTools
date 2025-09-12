@@ -1,8 +1,16 @@
+import sys
 from setuptools import setup, find_packages
 
+python_version = sys.version_info
+
 NAME = "SqlQtTools"
-VERSION = "0.1.17"
-REQUIRES = ["PySide6>=6.9.1", "SQLAlchemy>=2.0.41", "aiosqlite>=0.21.0"]
+VERSION = "0.1.18"
+REQUIRES = ["SQLAlchemy>=2.0.41", "aiosqlite>=0.21.0"]
+
+if python_version >= (3, 10):
+    REQUIRES.append('PySide6>=6.9.1')
+else:
+    REQUIRES.append('PySide2>=5.15.0')
 
 setup(
     name=NAME,
@@ -16,7 +24,7 @@ setup(
     packages=find_packages(),
     install_requires=REQUIRES,
     classifiers=[
-        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',

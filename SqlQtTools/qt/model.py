@@ -1,9 +1,8 @@
 from datetime import timezone, datetime
 from typing import Generic
-
-from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
 from sqlalchemy import Enum, DateTime
 
+from SqlQtTools.qt.compat import QAbstractTableModel, QModelIndex, Qt
 from SqlQtTools.sql import SQLDAOMap, SQLTableMap
 from SqlQtTools.general import tz_moscow
 

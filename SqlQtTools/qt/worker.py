@@ -1,6 +1,5 @@
 import abc
-
-from PySide6.QtCore import QObject, Signal, Slot, QThread
+from SqlQtTools.qt.compat import QObject, Signal, Slot, QThread
 
 
 class Worker(QObject):

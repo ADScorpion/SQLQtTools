@@ -1,16 +1,15 @@
 import sys
 
-from PySide6.QtCore import QSortFilterProxyModel, Qt, QSize
-from PySide6.QtGui import QAction
-from PySide6.QtWidgets import QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel, QHeaderView, QTableView, QStatusBar, QWidget, \
-    QApplication, QStyleFactory
-
-from SqlQtTools.qt.icons import icon_provider, BootstrapIcons
+from SqlQtTools.qt.compat import (HAS_MATCH_CASE, QSortFilterProxyModel, Qt, QSize, QMainWindow, QMdiArea, QMessageBox, QDialog, QPushButton, QHBoxLayout, QVBoxLayout, QLineEdit,
+                                  QLabel, QHeaderView, QTableView, QStatusBar, QWidget, QApplication, QStyleFactory, QAction)
+from SqlQtTools.qt.icons import make_icon_provider, BootstrapIcons
 from SqlQtTools.qt.dialogs import SysBaseDialog
 from SqlQtTools.qt import DataSourceMap
 
 
 class SysBaseMainWindow(QMainWindow):
+    icon_provider = make_icon_provider()
+
     def __init__(self):
         super().__init__()
 
@@ -28,7 +27,7 @@ class SysBaseMainWindow(QMainWindow):
         for action in self.menu_file():
             file_menu.addAction(action)
         file_menu.addSeparator()
-        exit_action = QAction(icon_provider.get_icon(BootstrapIcons.POWER), "Выход", self)
+        exit_action = QAction(self.icon_provider.get_icon(BootstrapIcons.POWER), "Выход", self)
         exit_action.triggered.connect(self.close)
         file_menu.addAction(exit_action)
 
@@ -36,16 +35,16 @@ class SysBaseMainWindow(QMainWindow):
 
         # Меню "Окно"
         window_menu = menubar.addMenu("Окно")
-        tile_action = QAction(icon_provider.get_icon(BootstrapIcons.WINDOW_SPLIT), "Мозаика", self)
+        tile_action = QAction(self.icon_provider.get_icon(BootstrapIcons.WINDOW_SPLIT), "Мозаика", self)
         tile_action.setStatusTip("Окна перестраиваются в порядке мозайки")
         tile_action.setShortcut('F2')
         tile_action.triggered.connect(self.mdi.tileSubWindows)
         window_menu.addAction(tile_action)
-        cascade_action = QAction(icon_provider.get_icon(BootstrapIcons.WINDOW_STACK), "Каскад", self)
+        cascade_action = QAction(self.icon_provider.get_icon(BootstrapIcons.WINDOW_STACK), "Каскад", self)
         cascade_action.setShortcut('F3')
         cascade_action.triggered.connect(self.mdi.cascadeSubWindows)
         window_menu.addAction(cascade_action)
-        close_action = QAction(icon_provider.get_icon(BootstrapIcons.WINDOW_X), "Закрыть", self)
+        close_action = QAction(self.icon_provider.get_icon(BootstrapIcons.WINDOW_X), "Закрыть", self)
         close_action.setShortcut('F4')
         close_action.triggered.connect(self.window_close_active)
         window_menu.addAction(close_action)
@@ -77,6 +76,7 @@ class SysBaseWidgetView(QWidget):
     title = "Форма #"
     win_icon = BootstrapIcons.ROCKET_TAKEOFF
     action = None
+    icon_provider = make_icon_provider()
 
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent)
@@ -125,7 +125,7 @@ class SysBaseWidgetView(QWidget):
 
             search_layout = QHBoxLayout()
             icon = QLabel()
-            icon.setPixmap(icon_provider.get_icon(BootstrapIcons.FUNNEL).pixmap(QSize(16, 16)))
+            icon.setPixmap(self.icon_provider.get_icon(BootstrapIcons.FUNNEL).pixmap(QSize(16, 16)))
             search_layout.addWidget(icon)
             search_edit = QLineEdit()
             search_edit.setPlaceholderText("Поиск...")
@@ -265,13 +265,13 @@ class SysBaseWidgetView(QWidget):
 
     @classmethod
     def init_action(cls, parent=None):
-        cls.action = QAction(icon_provider.get_icon(cls.win_icon), cls.title, parent)
+        cls.action = QAction(cls.icon_provider.get_icon(cls.win_icon), cls.title, parent)
         cls.action.triggered.connect(lambda: cls.active_triggered(parent, cls(parent=parent)))
         return cls.action
 
     def active_triggered(self, parent=None, children=None):
         subwindow = self.mdi.addSubWindow(parent)
-        subwindow.setWindowIcon(icon_provider.get_icon(parent.win_icon))
+        subwindow.setWindowIcon(self.icon_provider.get_icon(parent.win_icon))
         subwindow.show()
 
     @property
@@ -284,12 +284,20 @@ class SysBaseWidgetView(QWidget):
         return self.datasource.rows[row]
 
     def keyPressEvent(self, event):
-        match event.key():
-            case Qt.Key.Key_F5:
+        if HAS_MATCH_CASE == 6:
+            match event.key():
+                case Qt.Key.Key_F5:
+                    self.datasource.reread()
+                case Qt.Key.Key_Escape:
+                    self.close_window()
+                case _:
+                    super().keyPressEvent(event)
+        else:
+            if event.key() == Qt.Key.Key_F5:
                 self.datasource.reread()
-            case Qt.Key.Key_Escape:
+            elif event.key() == Qt.Key.Key_Escape:
                 self.close_window()
-            case _:
+            else:
                 super().keyPressEvent(event)
 
     @classmethod
@@ -298,12 +306,12 @@ class SysBaseWidgetView(QWidget):
             return
         _view = view(parent=parent, data=data, where=[field == data.Id, ])
         subwindow = parent.window().mdi.addSubWindow(_view)
-        subwindow.setWindowIcon(icon_provider.get_icon(_view.win_icon))
+        subwindow.setWindowIcon(cls.icon_provider.get_icon(_view.win_icon))
         subwindow.show()
         parent.window().update_status_bar()
 
 
-class PySide6App:
+class PySideApp:
     window: SysBaseMainWindow
 
     @classmethod

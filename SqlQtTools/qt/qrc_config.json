@@ -1,0 +1,52 @@
+{
+  "project_root": ".",
+  "output_file": "resources.qrc",
+  "include_patterns": [
+    "*.ico",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.bmp",
+    "*.svg",
+    "*.css",
+    "*.qss",
+    "*.qm",
+    "*.ttf",
+    "*.otf",
+    "*.json",
+    "*.xml",
+    "*.txt"
+  ],
+  "exclude_patterns": [
+    "__pycache__",
+    ".git",
+    ".vscode",
+    ".idea",
+    "venv",
+    "env",
+    "node_modules",
+    "dist",
+    "build",
+    "*.pyc",
+    "*.pyo",
+    "*.log",
+    "*.tmp",
+    "*.bak",
+    "*.swp"
+  ],
+  "prefix_mapping": {
+    "icons": "/icons",
+    "images": "/images",
+    "styles": "/styles",
+    "fonts": "/fonts",
+    "translations": "/translations",
+    "sounds": "/sounds",
+    "data": "/data",
+    "ui": "/ui"
+  },
+  "custom_aliases": {
+    "favicon.ico": "app_icon.ico",
+    "main_style.css": "style.css"
+  }
+}

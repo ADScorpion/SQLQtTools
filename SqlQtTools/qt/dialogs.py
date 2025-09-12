@@ -1,9 +1,8 @@
 from datetime import UTC, datetime
 from typing import Generic
-
-from PySide6.QtWidgets import QDialog, QFormLayout, QLineEdit, QComboBox, QDateTimeEdit, QCheckBox, QDialogButtonBox, QTextEdit
 from sqlalchemy import Float, Integer, Enum, DateTime, Boolean, String
 
+from SqlQtTools.qt.compat import QDialog, QFormLayout, QLineEdit, QComboBox, QDateTimeEdit, QCheckBox, QDialogButtonBox, QTextEdit
 from SqlQtTools.general import tz_moscow
 from SqlQtTools.sql.dao import SysBaseDAO
 from SqlQtTools.qt import DataSourceMap
