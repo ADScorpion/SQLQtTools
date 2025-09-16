@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 python_version = sys.version_info
 
 NAME = "SqlQtTools"
-VERSION = "0.1.19"
+VERSION = "0.1.20"
 REQUIRES = ["PySide6>=6.9.1", "SQLAlchemy>=2.0.41", "aiosqlite>=0.21.0"]
 
 setup(

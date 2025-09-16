@@ -1,5 +1,5 @@
 from SqlQtTools.qt.core import QFile, QIcon, QPixmap, QSize
-
+import SqlQtTools.resources.resources
 
 
 class ResourceManager:

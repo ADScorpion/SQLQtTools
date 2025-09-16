@@ -182,11 +182,11 @@ class AdvancedQRCGenerator:
 
         # Добавляем qresource для каждого префикса
         for prefix, files in sorted(files_by_prefix.items()):
-            # qresource = SubElement(rcc, 'qresource', prefix=prefix)
-            qresource = SubElement(rcc, 'qresource')
+            qresource = SubElement(rcc, 'qresource', prefix=prefix)
+            # qresource = SubElement(rcc, 'qresource')
             for file_path in sorted(files):
                 relative_path = file_path.relative_to(self.project_root)
-                file_elem = SubElement(qresource, 'file')
+                file_elem = SubElement(qresource, 'file', alias=relative_path.name)
                 file_elem.text = str(relative_path)
 
                 # Добавляем алиас если задан
@@ -195,7 +195,6 @@ class AdvancedQRCGenerator:
                     file_elem.set('alias', alias)
 
         # Форматируем XML
-        rough_string = tostring(rcc)
         tree = ElementTree(rcc)
         indent(tree, space="\t", level=0)
 

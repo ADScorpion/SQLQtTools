@@ -26,7 +26,7 @@ class SysBaseMainWindow(QMainWindow):
         for action in self.menu_file():
             file_menu.addAction(action)
         file_menu.addSeparator()
-        exit_action = QAction(ResourceManager.get_icon('../resources/icons/bootstrap/power.ico'), "Выход", self)
+        exit_action = QAction(ResourceManager.get_icon('icons/power.ico'), "Выход", self)
         exit_action.triggered.connect(self.close)
         file_menu.addAction(exit_action)
 
@@ -34,16 +34,16 @@ class SysBaseMainWindow(QMainWindow):
 
         # Меню "Окно"
         window_menu = menubar.addMenu("Окно")
-        tile_action = QAction(ResourceManager.get_icon('../resources/icons/bootstrap/window-split.ico'), "Мозаика", self)
+        tile_action = QAction(ResourceManager.get_icon('icons/window-split.ico'), "Мозаика", self)
         tile_action.setStatusTip("Окна перестраиваются в порядке мозайки")
         tile_action.setShortcut('F2')
         tile_action.triggered.connect(self.mdi.tileSubWindows)
         window_menu.addAction(tile_action)
-        cascade_action = QAction(ResourceManager.get_icon('../resources/icons/bootstrap/window-stack.ico'), "Каскад", self)
+        cascade_action = QAction(ResourceManager.get_icon('icons/window-stack.ico'), "Каскад", self)
         cascade_action.setShortcut('F3')
         cascade_action.triggered.connect(self.mdi.cascadeSubWindows)
         window_menu.addAction(cascade_action)
-        close_action = QAction(ResourceManager.get_icon('../resources/icons/bootstrap/windows-x.ico'), "Закрыть", self)
+        close_action = QAction(ResourceManager.get_icon('icons/windows-x.ico'), "Закрыть", self)
         close_action.setShortcut('F4')
         close_action.triggered.connect(self.window_close_active)
         window_menu.addAction(close_action)
@@ -123,7 +123,7 @@ class SysBaseWidgetView(QWidget):
 
             search_layout = QHBoxLayout()
             icon = QLabel()
-            icon.setPixmap(ResourceManager.get_icon('../resources/icons/bootstrap/funnel.ico').pixmap(QSize(16, 16)))
+            icon.setPixmap(ResourceManager.get_icon('icons/funnel.ico').pixmap(QSize(16, 16)))
             search_layout.addWidget(icon)
             search_edit = QLineEdit()
             search_edit.setPlaceholderText("Поиск...")
